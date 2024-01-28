@@ -1,5 +1,4 @@
 import React from 'react'
-import { useId } from 'react';
 import { useRef } from 'react'
 
 export default function Login({ onIdSubmit }) {
