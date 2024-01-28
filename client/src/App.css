@@ -5,3 +5,8 @@
     margin: 0;
     padding: 0;
 }
+.loginBackground{
+    background-image: url('assets/backgroundDark.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}   

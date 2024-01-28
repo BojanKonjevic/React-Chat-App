@@ -5,7 +5,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 function App() {
   const [id, setId] = useLocalStorage('id');
   return(
-    <div className='flex h-screen w-screen items-center justify-center flex-col bg-gray-100' >
+    <div>
       <Login onIdSubmit={setId}/>
     </div>
   );
