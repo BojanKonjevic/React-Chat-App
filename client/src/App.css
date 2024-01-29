@@ -10,3 +10,9 @@
     background-repeat: no-repeat;
     background-size: cover;
 }   
+.convButton{
+    border-right: 1px solid;
+}
+.conButton{
+    border-left: 1px soild;
+}
