@@ -28,6 +28,7 @@ export default function Sidebar({ id }) {
     <div className='sideBar h-screen bg-zinc-950 w-1/5 flex flex-col'>
       <div className='infoDiv p-4 flex justify-between'>
         <img src="assets/pfp.jpg" alt="" className='w-12 h-12 rounded-full'/>
+        <button className='bg-inherit border-none text-gray-200 cursor-pointer p-0 m-0'>Log Out</button>
       </div>
       <div className='buttonsDiv w-full m-0 p-0'>
         <button
