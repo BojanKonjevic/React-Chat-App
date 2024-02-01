@@ -3,12 +3,15 @@ import "../App.css";
 import useLocalStorage from "../hooks/useLocalStorage";
 import Dashboard from "./Dashboard";
 import { ContactsProvider } from "../Contexts/ContactsProvider";
+import { ConversationsProvider } from "../Contexts/ConversationsProvider";
 
 function App() {
   const [id, setId] = useLocalStorage('id');
   const dashboard=(
     <ContactsProvider>
-      <Dashboard id={id}/>
+      <ConversationsProvider>
+        <Dashboard id={id}/>
+      </ConversationsProvider>
     </ContactsProvider>
   )
   if(id){

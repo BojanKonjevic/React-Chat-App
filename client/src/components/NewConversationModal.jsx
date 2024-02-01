@@ -1,18 +1,31 @@
-import React, { useContext } from 'react';
-import { useContacts } from '../Contexts/ContactsProvider';  // Ensure you are importing useContacts from ContactsProvider
+import React, { useContext, useState } from 'react';
+import { ContactsProvider, useContacts } from '../Contexts/ContactsProvider';
 import { useRef } from 'react';
+import { useConversations } from "../Contexts/ConversationsProvider"
 
 export default function NewConversationModal({ closeModal }) {
-  const idRef = useRef();
-  const nameRef = useRef();
-  const { createContact } = useContacts();  // Corrected import
 
-  function handleSubmit(e) {
+  const [selectedContactIds, setSelectedContactIds] = useState([]);
+  const { contacts } = useContacts();
+  const { createConversation } = useConversations();
+  function handleSubmit(e){
     e.preventDefault();
-    createContact(idRef.current.value, nameRef.current.value);
+    createConversation(selectedContactIds);
     closeModal();
-  }
 
+  }
+  function handleCheckBoxChange(contactId){
+    setSelectedContactIds(prevSelectedContactIds=>{
+      if(prevSelectedContactIds.includes(contactId)){
+        return prevSelectedContactIds.filter(prevId =>{
+          return contactId !== prevId;
+        })
+      }
+      else{
+        return [...prevSelectedContactIds, contactId];
+      }
+    })
+  }
 
   return (
     <div className='relative p-6 flex flex-col justify-center items-center bg-zinc-900 w-1/4 text-gray-200'>
@@ -21,10 +34,12 @@ export default function NewConversationModal({ closeModal }) {
         <h2>Create Conversation</h2>
       </div>
       <form onSubmit={handleSubmit} className='flex flex-col w-full mt-4'>
-        <label htmlFor="idInput" className='text-xl'>Id</label>
-        <input ref={idRef} type="text" id='idInput' className='mt-2 text-xl p-2 rounded-md border mb-5 text-zinc-900' required/>
-        <label htmlFor="nameInput" className='text-xl'>Name</label>
-        <input ref={nameRef} type="text" id='nameInput' className='mt-2 text-xl p-2 rounded-md border text-zinc-900' required/>
+        {contacts.map(contact =>(
+          <div key={contact.id} className='flex w-full gap-4'>
+            <input id={`${contact.id}Check`} className='mb-4' type="checkbox" value={selectedContactIds.includes(contact.id)} onChange={()=>{handleCheckBoxChange(contact.id)}}/>
+            <label htmlFor={`${contact.id}Check`}>{contact.name}</label>
+          </div>
+        ))}
         <button className='w-24 p-3 rounded-md border-none bg-blue-500 text-gray-200 mt-5 text-lg cursor-pointer'>Submit</button>
       </form>
     </div>

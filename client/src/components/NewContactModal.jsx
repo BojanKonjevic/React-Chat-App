@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { useContacts } from '../Contexts/ContactsProvider';  // Ensure you are importing useContacts from ContactsProvider
+import { useContacts } from '../Contexts/ContactsProvider';
 import { useRef } from 'react';
 
 export default function NewConversationModal({ closeModal }) {
   const idRef = useRef();
   const nameRef = useRef();
-  const { createContact } = useContacts();  // Corrected import
+  const { createContact } = useContacts();
 
   function handleSubmit(e) {
     e.preventDefault();
