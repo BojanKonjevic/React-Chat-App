@@ -8,10 +8,16 @@ export default function NewConversationModal({ closeModal }) {
   const [selectedContactIds, setSelectedContactIds] = useState([]);
   const { contacts } = useContacts();
   const { createConversation } = useConversations();
+  const errRef = useRef();
   function handleSubmit(e){
     e.preventDefault();
-    createConversation(selectedContactIds);
-    closeModal();
+    if(selectedContactIds.length===0){
+      errRef.current.textContent="Select at least 1 contact."
+    }
+    else{
+      createConversation(selectedContactIds);
+      closeModal();
+    }
 
   }
   function handleCheckBoxChange(contactId){
@@ -40,6 +46,7 @@ export default function NewConversationModal({ closeModal }) {
             <label htmlFor={`${contact.id}Check`}>{contact.name}</label>
           </div>
         ))}
+        <span ref={errRef}></span>  
         <button className='w-24 p-3 rounded-md border-none bg-blue-500 text-gray-200 mt-5 text-lg cursor-pointer'>Submit</button>
       </form>
     </div>

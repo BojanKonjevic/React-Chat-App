@@ -1,16 +1,30 @@
 import React, { useContext } from 'react';
-import { useContacts } from '../Contexts/ContactsProvider';
+import { useContacts, ContactsProvider } from '../Contexts/ContactsProvider';
 import { useRef } from 'react';
 
 export default function NewConversationModal({ closeModal }) {
   const idRef = useRef();
   const nameRef = useRef();
-  const { createContact } = useContacts();
+  const errRef = useRef();
+  const { createContact, contacts } = useContacts();
 
   function handleSubmit(e) {
     e.preventDefault();
-    createContact(idRef.current.value, nameRef.current.value);
-    closeModal();
+    const newContactId = idRef.current.value;
+    const newContactName = nameRef.current.value;
+    if(contacts.some(contact=>contact.id===newContactId)){
+      errRef.current.textContent="A contact with that ID already exists."
+    }
+    else if(contacts.some(contact=>contact.name===newContactName)){
+      errRef.current.textContent="A contact with that name already exists."
+    }
+    else if(newContactName.length>30){
+      errRef.current.textContent="Contact name can't be over 30 characters long."
+    }
+    else{
+      createContact(newContactId, newContactName);
+      closeModal();
+    }
   }
 
 
@@ -25,8 +39,9 @@ export default function NewConversationModal({ closeModal }) {
         <input ref={idRef} type="text" id='idInput' className='mt-2 text-xl p-2 rounded-md border mb-5 text-zinc-900' required/>
         <label htmlFor="nameInput" className='text-xl'>Name</label>
         <input ref={nameRef} type="text" id='nameInput' className='mt-2 text-xl p-2 rounded-md border text-zinc-900' required/>
+        <span ref={errRef}></span>
         <button className='w-24 p-3 rounded-md border-none bg-blue-500 text-gray-200 mt-5 text-lg cursor-pointer'>Submit</button>
       </form>
-    </div>
+    </div>  
   )
 }
