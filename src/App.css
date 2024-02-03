@@ -16,3 +16,7 @@
 .conButton{
     border-left: 1px soild;
 }
+.pfp{
+    background-image: url('../public/assets/pfp.jpg');
+    background-size: cover;
+}

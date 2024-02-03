@@ -7,9 +7,10 @@ export default function Conversations() {
     return null;
   }
   return (
-    <ul className='text-white w-full overflow-auto'>
+    <ul className='text-lightGray w-full overflow-auto'>
       {conversations.map((conversation, index) => (
-        <li className={`w-auto text-lg p-4 cursor-pointer hover:bg-gray-500 ${conversation.selected ? 'bg-gray-500' : ''}`} key={index} style={{borderBottom:`1px solid rgb(229 231 235)`}} onClick={()=>selectConversationIndex(index)}>
+        <li className={`w-auto flex items-center gap-4 text-lg p-4 cursor-pointer hover:bg-darker ${conversation.selected ? 'bg-darker' : 'bg-lighter'}`} key={index} style={{borderBottom:`3px solid #1F232A`}} onClick={()=>selectConversationIndex(index)}>
+          <div className='w-12 h-12 rounded-full pfp'/>
           {conversation.recipients.map(r=>r.name).join(', ')}  
         </li>
       ))}

@@ -34,8 +34,8 @@ export default function NewConversationModal({ closeModal }) {
   }
 
   return (
-    <div className='relative p-6 flex flex-col justify-center items-center bg-zinc-900 w-1/4 text-gray-200'>
-      <button className="absolute border-none bg-inherit text-gray-200 text-2xl font-semibold top-6 right-6 cursor-pointer" onClick={closeModal}>X</button>
+    <div className='relative rounded-xl p-6 flex flex-col justify-center items-center bg-darkest w-1/4 text-lightGray'>
+      <button className="absolute border-none bg-inherit text-orange text-2xl font-semibold top-6 right-6 cursor-pointer" onClick={closeModal}>X</button>
       <div className='w-full flex border-b solid black'>
         <h2>Create Conversation</h2>
       </div>
@@ -46,8 +46,8 @@ export default function NewConversationModal({ closeModal }) {
             <label htmlFor={`${contact.id}Check`}>{contact.name}</label>
           </div>
         ))}
-        <span ref={errRef}></span>  
-        <button className='w-24 p-3 rounded-md border-none bg-blue-500 text-gray-200 mt-5 text-lg cursor-pointer'>Submit</button>
+        <span className='text-orange' ref={errRef}></span>  
+        <button className='w-24 p-3 rounded-md border-none bg-blue text-lightGray mt-5 text-lg cursor-pointer'><b>Submit</b></button>
       </form>
     </div>
   )

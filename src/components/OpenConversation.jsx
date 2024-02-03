@@ -28,14 +28,14 @@ export default function OpenConversation() {
   }
 
   return (
-    <div className='flex flex-col text-white items-center justify-end p-4 flex-shrink-0 max-h-screen' style={{ width: '80%' }}>
-      <div className='w-11/12 overflow-y-auto'>
+    <div className='flex flex-col bg-darkest text-white items-center justify-end p-4 flex-shrink-0 max-h-screen' style={{ width: '80%' }}>
+      <div className='w-11/12 overflow-y-auto' style={{ scrollbarWidth: 'thin', scrollbarColor: '#252A33 #121212' }}>
         <div className='flex flex-col items-start justify-end mr-4'>
           {selectedConversation.messages.map((message, index) => {
             return (
-              <div key={index} className={`flex flex-col ${message.fromMe ? 'self-end items-end' : 'items-start'}`}>
-                <div className={`flex text-wrap rounded-md px-2 py-1 ${message.fromMe ? 'bg-blue-400' : 'border'}`}>{message.text}</div>
-                <div className={`text-gray-400 ${message.fromMe ? 'text-right' : ''}`}>{message.fromMe ? 'You' : message.senderName}</div>
+              <div  style={{ maxWidth: '55%', overflowWrap: "break-word" }}  key={index} className={`flex max-w-full flex-col mt-4 ${message.fromMe ? 'self-end items-end' : 'items-start'}`}>
+                <div className={`max-w-full rounded-md p-2 ${message.fromMe ? 'bg-blue' : 'bg-green'}`}>{message.text}</div>
+                <div className={`text-lightGray mt-2 ${message.fromMe ? 'text-right' : ''}`}>{message.fromMe ? 'You' : message.senderName}</div>
               </div>
             );
           })}
@@ -46,13 +46,13 @@ export default function OpenConversation() {
         <textarea
           onKeyDown={handleKeyDown}
           ref={textareaRef}
-          className='w-full overflow-y-scroll text-lg border-none'
+          className='w-full text-lg border-none bg-primary text-lightGray p-2 outline-none'
           value={text}
           onChange={(e) => setText(e.target.value)}
           required
-          style={{ scrollbarWidth: 'thin', scrollbarColor: 'transparent transparent' }}
+          style={{ scrollbarWidth: 'thin', scrollbarColor: '#4F5460 #252A33', resize: "none"}}
         ></textarea>
-        <button className='bg-blue-500 border-none text-lg text-gray-200 font-semibold py-3 px-8 rounded-r hover:bg-blue-600 focus:outline-none cursor-pointer'>
+        <button className='bg-blue border-none text-lg text-lightGray font-bold py-3 px-8 rounded-r hover:bg-blue-600 focus:outline-none cursor-pointer'>
           Send
         </button>
       </form>

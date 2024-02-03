@@ -25,36 +25,38 @@ export default function Sidebar({ id }) {
   }
 
   return (
-    <div className='bg-zinc-950 w-1/5 flex flex-col'>
+    <div className='w-1/5 flex flex-col bg-primary text-lightGray'>
       <div className='p-4 flex justify-between'>
-        <img src="assets/pfp.jpg" alt="" className='w-12 h-12 rounded-full'/>
-        <button className='bg-inherit border-none text-gray-200 cursor-pointer p-0 m-0'>Log Out</button>
+        <div className='flex w-1/2 items-center gap-2'>
+          <div className='w-12 h-12 rounded-full pfp min-w-12'/>
+            <p>
+              Your Id: <span>{id}</span>
+            </p>
+        </div>
+        <button className='bg-inherit border-none cursor-pointer p-0 m-0 text-orange'>Log Out</button>
       </div>
       <div className='buttonsDiv w-full m-0 p-0'>
         <button
-          onClick={activateConversations}
-          className={`w-1/2 border-none p-6 font-bold cursor-pointer text-lg text-zinc-900 ${
-            isActiveConversations ? 'bg-gray-400' : 'bg-gray-200 hover:bg-gray-400'
+          onClick={activateConversations} style={{borderBottom:`3px solid #1F232A`}}
+          className={`w-1/2 border-none p-6 font-bold cursor-pointer text-lg text-lightGray ${
+            isActiveConversations ? 'bg-darker' : 'bg-lighter hover:bg-darker'
           }`}
         >
           Conversations
         </button>
         <button
-          onClick={activateContacts}
-          className={`w-1/2 border-none p-6 font-bold cursor-pointer text-lg text-zinc-900 ${
-            isActiveContacts ? 'bg-gray-400' : 'bg-gray-200 hover:bg-gray-400'
+          onClick={activateContacts} style={{borderBottom:`3px solid #1F232A`}}
+          className={`w-1/2 border-none p-6 font-bold cursor-pointer text-lg text-lightGray ${
+            isActiveContacts ? 'bg-darker' : 'bg-lighter hover:bg-darker'
           }`}
         >
           Contacts
         </button>
       </div>
       {isActiveConversations ? <Conversations /> : <Contacts />}
-      <div className='text-gray-200 w-full mt-auto mb-2 ml-2'>
-        Your Id: <span>{id}</span>
-      </div>
       <button
         onClick={() => setModalOpen(true)}
-        className='border-none text-zinc-900 w-auto flex items-center justify-center bg-gray-200 p-2 font-semibold text-2xl cursor-pointer hover:bg-gray-400'
+        className='border-none mt-auto text-lightGray w-auto flex items-center justify-center bg-lighter p-2 font-semibold text-2xl cursor-pointer hover:bg-darker'
       >
         New {isActiveConversations ? "Conversation" : "Contact"}
       </button>
