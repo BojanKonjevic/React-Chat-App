@@ -25,20 +25,20 @@ export default function Sidebar({ id }) {
   }
 
   return (
-    <div className='w-1/5 flex flex-col bg-primary text-lightGray'>
-      <div className='p-4 flex justify-between'>
-        <div className='flex w-1/2 items-center gap-2'>
+    <div className='sidebar w-1/5 flex flex-col bg-primary text-lightGray'>
+      <div className='firstSidebarDiv p-4 flex justify-between'>
+        <div className='pfpIdDiv flex w-1/2 items-center justify-center gap-2'>
           <div className='w-12 h-12 rounded-full pfp min-w-12'/>
-            <p>
+            <p className='idPar text-center'>
               Your Id: <span>{id}</span>
             </p>
         </div>
         <button className='bg-inherit border-none cursor-pointer p-0 m-0 text-orange'>Log Out</button>
       </div>
-      <div className='buttonsDiv w-full m-0 p-0'>
+      <div className='buttonsDiv w-full m-0 p-0 flex'>
         <button
           onClick={activateConversations} style={{borderBottom:`3px solid #1F232A`}}
-          className={`w-1/2 border-none p-6 font-bold cursor-pointer text-lg text-lightGray ${
+          className={`sidebarConvoContact w-1/2 border-none p-6 font-bold cursor-pointer text-lightGray flex items-center justify-center ${
             isActiveConversations ? 'bg-darker' : 'bg-lighter hover:bg-darker'
           }`}
         >
@@ -46,7 +46,7 @@ export default function Sidebar({ id }) {
         </button>
         <button
           onClick={activateContacts} style={{borderBottom:`3px solid #1F232A`}}
-          className={`w-1/2 border-none p-6 font-bold cursor-pointer text-lg text-lightGray ${
+          className={`sidebarConvoContact w-1/2 border-none p-6 font-bold cursor-pointer text-lightGray flex items-center justify-center ${
             isActiveContacts ? 'bg-darker' : 'bg-lighter hover:bg-darker'
           }`}
         >
@@ -56,7 +56,7 @@ export default function Sidebar({ id }) {
       {isActiveConversations ? <Conversations /> : <Contacts />}
       <button
         onClick={() => setModalOpen(true)}
-        className='border-none mt-auto text-lightGray w-auto flex items-center justify-center bg-lighter p-2 font-semibold text-2xl cursor-pointer hover:bg-darker'
+        className='modalBtn border-none mt-auto text-lightGray w-auto flex items-center justify-center bg-lighter p-2 font-semibold text-2xl cursor-pointer hover:bg-darker'
       >
         New {isActiveConversations ? "Conversation" : "Contact"}
       </button>

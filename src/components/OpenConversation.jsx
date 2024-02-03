@@ -28,7 +28,7 @@ export default function OpenConversation() {
   }
 
   return (
-    <div className='flex flex-col bg-darkest text-white items-center justify-end p-4 flex-shrink-0 max-h-screen' style={{ width: '80%' }}>
+    <div className='openConversation flex flex-col bg-darkest text-white items-center justify-end p-4 flex-shrink-0 max-h-screen' style={{ width: '80%' }}>
       <div className='w-11/12 overflow-y-auto' style={{ scrollbarWidth: 'thin', scrollbarColor: '#252A33 #121212' }}>
         <div className='flex flex-col items-start justify-end mr-4'>
           {selectedConversation.messages.map((message, index) => {

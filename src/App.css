@@ -20,3 +20,33 @@
     background-image: url('../public/assets/pfp.jpg');
     background-size: cover;
 }
+@media (max-width: 768px) {
+    .sidebar{
+        width: 40%;
+    }
+    .openConversation{
+        width: 60%;
+    }
+    .buttonsDiv{
+        flex-direction: column;
+    }
+    .sidebarConvoContact{
+        width: 100%;
+    }
+    .firstSidebarDiv{
+        flex-direction: column;
+        align-items: center;
+    }
+    .pfpIdDiv{
+        flex-direction: column;
+        margin-bottom: 6px;
+    }
+    .modalBtn{
+        font-size: 1em;
+    }
+}
+@media (max-width: 1730px) {
+    .sidebarConvoContact{
+        font-size: small;
+    }
+}
