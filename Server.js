@@ -1,11 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-
-const app = express();
-app.use(cors({ origin: "https://bojankonjevic.github.io" }));
-
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(5000, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
@@ -20,9 +18,4 @@ io.on("connection", (socket) => {
       });
     });
   });
-});
-
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });

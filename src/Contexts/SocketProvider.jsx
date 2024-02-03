@@ -12,7 +12,7 @@ export function SocketProvider({ id, children }) {
 
   useEffect(() => {
     const newSocket = io(
-      'https://bojankonjevic.github.io/React-Chat-App/',
+      'http://localhost:5000',
       { query: { id } }
     )
     setSocket(newSocket)
