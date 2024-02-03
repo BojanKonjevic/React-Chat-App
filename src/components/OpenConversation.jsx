@@ -33,7 +33,7 @@ export default function OpenConversation() {
         <div className='flex flex-col items-start justify-end mr-4'>
           {selectedConversation.messages.map((message, index) => {
             return (
-              <div key={index} className={`flex flex-col ${message.fromMe ? 'self-end' : ''}`}>
+              <div key={index} className={`flex flex-col ${message.fromMe ? 'self-end items-end' : 'items-start'}`}>
                 <div className={`flex text-wrap rounded-md px-2 py-1 ${message.fromMe ? 'bg-blue-400' : 'border'}`}>{message.text}</div>
                 <div className={`text-gray-400 ${message.fromMe ? 'text-right' : ''}`}>{message.fromMe ? 'You' : message.senderName}</div>
               </div>
