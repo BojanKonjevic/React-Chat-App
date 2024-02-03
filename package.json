@@ -24,7 +24,7 @@
     "server": "node Server.jsx",
     "devStart": "concurrently \"npm start\" \"nodemon Server.js\"",
     "predeploy": "npm run build",
-    "delpoy": "gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "overrides": {
     "nth-check": "2.0.1"
