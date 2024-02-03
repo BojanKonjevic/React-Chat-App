@@ -4,7 +4,8 @@ const cors = require("cors");
 const app = express();
 app.use(cors({ origin: "https://bojankonjevic.github.io" }));
 
-const io = require("socket.io")(5000);
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
@@ -19,4 +20,9 @@ io.on("connection", (socket) => {
       });
     });
   });
+});
+
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
