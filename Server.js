@@ -1,11 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-
-const app = express();
-app.use(cors({ origin: "https://bojankonjevic.github.io" }));
-
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "https://bojankonjevic.github.io",
+    methods: ["GET", "POST"],
+  },
+});
 io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
